@@ -1,9 +1,15 @@
 import axios from 'axios';
 import React from 'react';
+import { Basket } from '../../app/models/basket';
 import { Product } from '../../app/models/product';
 import ProductList from './ProductList';
 
-export default function Catalog() {
+interface Props {
+  basket: Basket;
+  setBasket: Function;
+}
+
+export default function Catalog({ basket, setBasket }: Props) {
   const [products, setProducts] = React.useState<Product[]>([]);
 
   React.useEffect(() => {
@@ -17,7 +23,7 @@ export default function Catalog() {
 
   return (
     <>
-      <ProductList products={products} />
+      <ProductList products={products} basket={basket} setBasket={setBasket} />
     </>
   );
 }
